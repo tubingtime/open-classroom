@@ -2,8 +2,8 @@
 App to find open classroomes to study
 **Roadmap**
 
-[] Backend data wrangler(python)
+[ ] Backend data wrangler(python)
+ 
+[ ] Frontend CLI
 
-[] Frontend CLI
-
-[] Frontend Web app w/ react & tauri
+[ ] Frontend Web app w/ react & tauri
