@@ -1,5 +1,4 @@
-# coding=utf8
-# the above tag defines encoding for this document and is for Python 2.x compatibility
+#just a test file for regex
 
 import re
 
