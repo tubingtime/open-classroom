@@ -2,7 +2,7 @@
 App to find open classroomes to study
 **Roadmap**
 
-[ ] Backend data wrangler(python)
+[X] Backend data wrangler(python, exports csv)
  
 [ ] Frontend CLI
 
