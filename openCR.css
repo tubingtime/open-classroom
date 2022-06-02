@@ -32,6 +32,12 @@ button{
     background-color: rgb(218, 218, 218); /* delete me */  
 }
 
+.vertical-flex{
+    display: block;
+    -moz-box-orient: vertical;
+    min-width: 0px; /*override default min-width:auto, which makes overflow */
+}
+
 table {
     border-collapse: collapse;
 }
@@ -40,9 +46,10 @@ table, th, td {
 }
 th, td {
     padding: 10px;
+    min-width: 60px
 }
 
-table.scrolly-oflow {
+.scrolly-oflow {
     overflow-x: scroll;
     display: block;
     border: 0px;
