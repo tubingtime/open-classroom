@@ -105,6 +105,12 @@ for index, row in data.iterrows():
         currentRoom = db.get(row.Location)
         currentRoom.get("bookings").append(newBooking)
 
+dbSorted = {}
+for i in sorted(db):
+    dbSorted[i] = db[i]
+    
+
+
 def myDefault(obj):
     """Default JSON serializer."""
     import calendar, datetime
@@ -115,4 +121,4 @@ def myDefault(obj):
 
 
 with open("data/db.json", "w") as outfile:
-    json.dump(db, outfile, default=myDefault)
+    json.dump(dbSorted, outfile, default=myDefault)
