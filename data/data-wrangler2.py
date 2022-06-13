@@ -5,7 +5,7 @@ from typing import NamedTuple
 from datetime import datetime
 
 
-# lines = open('classes.html', 'r').readlines()
+# lines = open('data/classes.html', 'r').readlines()
 
 # headers = [ #headers excluding CRN and Select
 #     [0,"Course Link"],
@@ -59,19 +59,25 @@ from datetime import datetime
 #print("CSV file generated in: %s" % os.getcwd());
 
 ## generate db
-class classroom(NamedTuple):
-    name: str
-    info: str
-    bookings: list
-class booking(NamedTuple):
-    days: list
-    start: datetime.time
-    end: datetime.time
-    crn: int
-    name: str
-db = {
-    "TST69": classroom("LS21","blaze room",[["nugget"]]) #test entry
-}
+
+# tried to do this with classes and json dump wouldnt format properly... maybe another time
+# class classroom:
+#     def __init__(self, name, info, bookings):
+#         self.name = name
+#         self.info = info
+#         self.bookings = bookings
+
+
+# class booking(NamedTuple):
+#     days: list
+#     start: datetime.time
+#     end: datetime.time
+#     crn: int
+#     name: str
+
+
+
+db = {}
 data = pd.read_csv("data/classData.csv")
 for index, row in data.iterrows():
     if ("TBA" in row.Location or "TBA" in row.Time or "RMT" in row.Location or "TBA" in row.Date):
@@ -81,13 +87,23 @@ for index, row in data.iterrows():
     format = "%I:%M %p" #https://docs.python.org/3/library/datetime.html#strftime-and-strptime-format-codes
     start = datetime.strptime(timeOccupied[0][0],format).time()
     end = datetime.strptime(timeOccupied[0][1],format).time()
-    newBooking = booking(list(row.Days),start,end,row.CRN,row.Title)
+    newBooking = {
+        "name": row.Title,
+        "days": list(row.Days),
+        "start": start,
+        "end": end,
+        "crn": row.CRN
+    }
     if row.Location not in db:
-        newClassroom = classroom(row.Location,"no info",[newBooking])
+        newClassroom = {
+            "name": row.Location,
+            "info": "no info",
+            "bookings": [newBooking]
+        }
         db.update({row.Location: newClassroom})
     else:
         currentRoom = db.get(row.Location)
-        currentRoom.bookings.append(newBooking)
+        currentRoom.get("bookings").append(newBooking)
 
 def myDefault(obj):
     """Default JSON serializer."""
@@ -98,5 +114,5 @@ def myDefault(obj):
     raise TypeError('Not sure how to serialize %s' % (obj,))
 
 
-with open("db.json", "w") as outfile:
+with open("data/db.json", "w") as outfile:
     json.dump(db, outfile, default=myDefault)
