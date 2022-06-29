@@ -1,3 +1,4 @@
+from hashlib import new
 import re,csv,os,json
 from xmlrpc.client import DateTime
 import pandas as pd
@@ -75,7 +76,17 @@ from datetime import datetime
 #     crn: int
 #     name: str
 
-
+def convertDay(dayString):
+    conversion = {
+        "U": 0,
+        "M": 1,
+        "T": 2,
+        "W": 3,
+        "R": 4,
+        "F": 5,
+        "S": 6,
+    }
+    return conversion[dayString];
 
 db = {}
 data = pd.read_csv("data/classData.csv")
@@ -87,9 +98,16 @@ for index, row in data.iterrows():
     format = "%I:%M %p" #https://docs.python.org/3/library/datetime.html#strftime-and-strptime-format-codes
     start = datetime.strptime(timeOccupied[0][0],format).time()
     end = datetime.strptime(timeOccupied[0][1],format).time()
+    
+    #because i suck at css
+    if ("XARTS") in row.Location:
+        newTitle = row.Location[3:]
+        row.Location = newTitle
+        
+        
     newBooking = {
         "name": row.Title,
-        "days": list(row.Days),
+        "days": list(map(convertDay,list(row.Days))),
         "start": start,
         "end": end,
         "crn": row.CRN
