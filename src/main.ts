@@ -1,6 +1,19 @@
 import './style.css'
 import db from '../data/db.json'
 
+type roomStruct = {
+    name: string;
+    info: string;
+    bookings: bookingStruct;
+}
+type bookingStruct = {
+    name: string; 
+    days: number[]; 
+    start: string; 
+    end: string; 
+    crn: number; 
+}[]
+
 console.log('hello')
 let topScrollbar = document.getElementById("top-scrollbar")
 let botScrollbar = document.getElementById("bot-scrollbar")
@@ -26,7 +39,7 @@ for (let room in db){
 
 
 addRow(db["LM 108"])
-function addRow(room){
+function addRow(room: roomStruct){
     let crList = <HTMLTableElement> document.getElementById("crList")
     let avails = <HTMLTableElement> document.getElementById("bot-scrollbar");
     //first add room name to crList
@@ -36,12 +49,27 @@ function addRow(room){
     //then add the cells for times
     newRow = avails.insertRow()
     newRow.insertCell().innerHTML = " " //min-height not workin so we add whitespace char
-    for (let i = 1; i < 24; i++){
-        for (let booking in room.bookings){
-        }
-        newRow.insertCell().style.backgroundColor = "red";
 
+    for (let i = 2; i <= 24; i++){
+        newRow.insertCell().style.backgroundColor = "green";
+    }
+    for (let booking of room.bookings){
+
+        //cells[0-23]
+        let start = Number(booking.start.slice(0,2))
+        let end = Number(booking.end.slice(0,2))
+        for (let s = start; s <= end; s++){
+            newRow.cells[s].style.backgroundColor = "red"
+            
+
+        }
     }
     
 }
+
+function hoverText(this){
+
+}
+
+
 
