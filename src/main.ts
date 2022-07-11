@@ -14,7 +14,7 @@ type bookingStruct = {
     crn: number; 
 }[]
 
-console.log('hello')
+// ---- SCROLLBAR SYNC -----
 let topScrollbar = document.getElementById("top-scrollbar")
 let botScrollbar = document.getElementById("bot-scrollbar")
 
@@ -25,7 +25,13 @@ topScrollbar.onscroll = function(){
 botScrollbar.onscroll = function(){
     topScrollbar.scrollLeft = botScrollbar.scrollLeft;
 }
+// ---- END SCROLLBAR -----
 
+//Set time
+let dateTime = new Date();
+dateTime.getDay()
+let dateHTML = document.getElementById("date")
+dateHTML.innerHTML = dateTime.toLocaleString()
 
 let crList = document.getElementById("crList")
 let avail_row = document.getElementById("bot-scrollbar");
@@ -54,13 +60,13 @@ function addRow(room: roomStruct){
         newRow.insertCell().style.backgroundColor = "green";
     }
     for (let booking of room.bookings){
-
-        //cells[0-23]
-        let start = Number(booking.start.slice(0,2))
-        let end = Number(booking.end.slice(0,2))
-        for (let s = start; s <= end; s++){
-            newRow.cells[s].style.backgroundColor = "red"
-            
+        if (booking.days.includes(dateTime.getDay())){
+            //cells[0-23]
+            let start = Number(booking.start.slice(0,2))
+            let end = Number(booking.end.slice(0,2))
+            for (let s = start; s <= end; s++){
+                newRow.cells[s].style.backgroundColor = "red"
+        }    
 
         }
     }
