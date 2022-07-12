@@ -37,16 +37,27 @@ let crList = document.getElementById("crList")
 let avail_row = document.getElementById("bot-scrollbar");
 
 let room_html = "";
-for (let room in db){
-    addRow(db[room])
 
+generateTable();
+
+
+
+function generateTable(){
+    let crList = <HTMLTableElement> document.getElementById("crList");
+    let avails = <HTMLTableElement> document.getElementById("bot-scrollbar");
+    crList.innerHTML = "<tr><th>Classrooms</th></tr>";
+    avails.innerHTML = ""; 
+    for (let room in db){
+        addRow(db[room])
+    }
 }
+
 
 
 
 addRow(db["LM 108"])
 function addRow(room: roomStruct){
-    let crList = <HTMLTableElement> document.getElementById("crList")
+    let crList = <HTMLTableElement> document.getElementById("crList");
     let avails = <HTMLTableElement> document.getElementById("bot-scrollbar");
     //first add room name to crList
     let newRow = crList.insertRow()
