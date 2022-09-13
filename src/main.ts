@@ -73,7 +73,7 @@ function addRow(room: roomStruct){
     newRow.insertCell().innerHTML = " " //min-height not workin so we add whitespace char
 
     for (let i = 2; i <= 24; i++){
-        newRow.insertCell().style.backgroundColor = "green";
+        newRow.insertCell().style.backgroundColor = "green"; //default everything is green
     }
     for (let booking of room.bookings){
         if (booking.days.includes(dateTime.getDay())){ /* If there's a booking at curDay */
@@ -81,7 +81,8 @@ function addRow(room: roomStruct){
             let start = Number(booking.start.slice(0,2))
             let end = Number(booking.end.slice(0,2))
             for (let s = start; s <= end; s++){
-                newRow.cells[s].style.backgroundColor = "red"
+                newRow.cells[s].style.backgroundColor = "red";
+                newRow.cells[s].title = booking.name
         }    
 
         }
@@ -89,8 +90,10 @@ function addRow(room: roomStruct){
     
 }
 
-function hoverText(this){
-
+function hoverText(this : HTMLTableCellElement){
+    console.log(this.getAttribute("className"))
+    //TODO: better hover func: check https://www.w3schools.com/howto/howto_css_display_element_hover.asp
+    return;
 }
 
 
