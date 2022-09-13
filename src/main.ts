@@ -56,6 +56,11 @@ function generateTable(){
 
 
 addRow(db["LM 108"])
+
+/**
+ * Fill a classroom row with data
+ * @param  {roomStruct} room structure containing all data about the classroom
+ */
 function addRow(room: roomStruct){
     let crList = <HTMLTableElement> document.getElementById("crList");
     let avails = <HTMLTableElement> document.getElementById("bot-scrollbar");
@@ -71,7 +76,7 @@ function addRow(room: roomStruct){
         newRow.insertCell().style.backgroundColor = "green";
     }
     for (let booking of room.bookings){
-        if (booking.days.includes(dateTime.getDay())){
+        if (booking.days.includes(dateTime.getDay())){ /* If there's a booking at curDay */
             //cells[0-23]
             let start = Number(booking.start.slice(0,2))
             let end = Number(booking.end.slice(0,2))
