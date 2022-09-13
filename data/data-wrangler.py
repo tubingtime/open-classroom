@@ -1,6 +1,6 @@
 import re,csv
 
-lines = open('classes.html', 'r').readlines()
+lines = open('data/classes.html', 'r').readlines()
 
 classes = "CRN,Title,Days,Time,Students,Date,Location"
 headers = [ #headers excluding CRN and Select
@@ -49,7 +49,7 @@ for index, line in enumerate(lines): #have to use enumerate so i can manipulate 
 
 
 #write as csv
-with open('classData.csv', 'w', newline='') as file:
+with open('data/classData.csv', 'w', newline='') as file:
     writer = csv.writer(file, quoting=csv.QUOTE_ALL)
     writer.writerows(classList)
     
