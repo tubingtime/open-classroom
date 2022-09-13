@@ -77,5 +77,11 @@ tr, td {
     height: 100%;
 }
 
+div.sticky {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    background-color: rgb(255, 255, 255);
+}
 
 
