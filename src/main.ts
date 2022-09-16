@@ -33,10 +33,6 @@ dateTime.getDay()
 let dateHTML = document.getElementById("date")
 dateHTML.innerHTML = dateTime.toLocaleString()
 
-let crList = document.getElementById("crList")
-let avail_row = document.getElementById("bot-scrollbar");
-
-let room_html = "";
 
 generateTable();
 
@@ -90,11 +86,11 @@ function addRow(room: roomStruct){
     
 }
 
-function hoverText(this : HTMLTableCellElement){
+/* function hoverText(this : HTMLTableCellElement){
     console.log(this.getAttribute("className"))
     //TODO: better hover func: check https://www.w3schools.com/howto/howto_css_display_element_hover.asp
     return;
-}
+} */
 
 
 
