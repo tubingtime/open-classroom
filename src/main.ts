@@ -67,6 +67,7 @@ function addRow(room: roomStruct){
     //then add the cells for times
     newRow = avails.insertRow()
     newRow.insertCell().innerHTML = " " //min-height not workin so we add whitespace char
+    newRow.cells[0].style.backgroundColor = "#34ace0";
 
     for (let i = 2; i <= 24; i++){
         newRow.insertCell().style.backgroundColor = "#34ace0"; //default everything is green
@@ -74,8 +75,8 @@ function addRow(room: roomStruct){
     for (let booking of room.bookings){
         if (booking.days.includes(dateTime.getDay())){ /* If there's a booking at curDay */
             //cells[0-23]
-            let start = Number(booking.start.slice(0,2))
-            let end = Number(booking.end.slice(0,2))
+            let start = Number(booking.start.slice(0,2))-1
+            let end = Number(booking.end.slice(0,2))-1
             for (let s = start; s <= end; s++){
                 newRow.cells[s].style.backgroundColor = "#ff5252";
                 newRow.cells[s].title = booking.name
