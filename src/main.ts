@@ -77,14 +77,14 @@ function addRow(room: roomStruct){
             //cells[0-23]
             let start = Number(booking.start.slice(0,2))-1
             let end = Number(booking.end.slice(0,2))-1
+            let bookingTitle = booking.name + "\n" + booking.start.slice(0,5) + "-" + booking.end.slice(0,5);
             for (let s = start; s <= end; s++){
                 newRow.cells[s].style.backgroundColor = "#ff5252";
-                newRow.cells[s].title = booking.name
+                newRow.cells[s].title = bookingTitle;
         }    
 
         }
     }
-    
 }
 
 /* function hoverText(this : HTMLTableCellElement){
