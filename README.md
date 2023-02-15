@@ -5,7 +5,7 @@ Site is live at: https://usfballmap.teejay.pw/
 
 
 ## To add new data
-You need a CSV file containing class information in the format of classData.csv
+You need a CSV file containing class information in the format of data/classData.csv
 
 To generate this file I logged into banner, went to Registration->Look Up and Register for Classes->Enter Term. Then click 'All' for Subject and search.
 This will show you a page with all class info. Save this page as classes.html and put in the `data` folder. 
