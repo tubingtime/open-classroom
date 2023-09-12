@@ -1,5 +1,6 @@
 # open-classroom
-App to find open classroomes to study in at USF
+App to find open classroomes to study in at USF. 
+However this would work for any school as long as you have the data and format like ``data/classData.csv``
 
 Site is live at: https://usfballmap.teejay.pw/
 
@@ -12,4 +13,4 @@ This will show you a page with all class info. Save this page as classes.html an
 
 Then from the base dir: Run `python3 data-wrangler.py` and `python3 data-wrangler2.py`.
 
-NOTE: This was tested using ` Release: 8.7.1.2 `
+NOTE: This was tested using banner version: ` Release: 8.7.1.2 `
