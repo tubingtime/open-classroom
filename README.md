@@ -1,5 +1,6 @@
 # open-classroom
 App to find open classroomes to study in at USF. 
+
 However this would work for any school as long as you have the data and format like ``data/classData.csv``
 
 Site is live at: https://usfballmap.teejay.pw/
